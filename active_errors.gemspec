@@ -10,8 +10,8 @@ Gem::Specification.new do |spec|
   spec.authors = ['Juan Gomez']
   spec.email = ['j.gomez@drexed.com']
 
-  spec.summary = 'Gem for commonly used ruby object helpers.'
-  spec.description = 'Class extensions of commonly used ruby object helpers.'
+  spec.summary = 'Gem for generating and accessing ActiveModel::Errors like error messages.'
+  spec.description = 'Generate and access ActiveModel::Errors like error messages.'
   spec.homepage = 'http://drexed.github.io/active_errors'
   spec.license = 'MIT'
 
