@@ -1,8 +1,9 @@
 # ActiveErrors
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/active_errors`. To experiment with that code, run `bin/console` for an interactive prompt.
+[![Gem Version](https://badge.fury.io/rb/active_errors.svg)](http://badge.fury.io/rb/active_errors)
+[![Build Status](https://travis-ci.org/drexed/active_errors.svg?branch=master)](https://travis-ci.org/drexed/active_errors)
 
-TODO: Delete this and the text above, and describe your gem
+ActiveErrors provides an API for generating and accessing in the identical format as ActiveModel::Errors but without the need for all those extra cruft.
 
 ## Installation
 
@@ -20,24 +21,44 @@ Or install it yourself as:
 
     $ gem install active_errors
 
+## Table of Contents
+
+* [Usage](#usage)
+
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+class Shipment
 
-## Development
+  def errors
+    @errors ||= ActiveErrors::Messages.new
+  end
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+  def messages
+    @errors.full_messages
+  end
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+  def process
+    ShipmentItem.each do |item|
+      item.add_to_box!
+    rescue Shipment::OutOfStock => e
+      errors.add(item.name, I18n.t('errors.out_of_stock'))
+    rescue Shipment::DoesNotExist => e
+      errors[item.name] = I18n.t('errors.does_not_exist')
+    rescue ActiveRecord::RecordInvalid
+      errors.merge!(item.errors)
+    end
+  end
+
+end
+```
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/active_errors. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Your contribution is welcome.
 
-## License
-
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-## Code of Conduct
-
-Everyone interacting in the ActiveErrors project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/active_errors/blob/master/CODE_OF_CONDUCT.md).
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Commit your changes (`git commit -am 'Added some feature'`)
+4. Push to the branch (`git push origin my-new-feature`)
+5. Create new Pull Request

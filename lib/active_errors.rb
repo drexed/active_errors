@@ -1,6 +1,5 @@
-require "active_errors/version"
+# frozen_string_literal: true
 
-module ActiveErrors
-  class Error < StandardError; end
-  # Your code goes here...
+%w[version messages].each do |file_name|
+  require "active_errors/#{file_name}"
 end
