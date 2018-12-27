@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ActiveErrors
   class Messages
 
@@ -8,7 +10,7 @@ module ActiveErrors
     end
 
     def [](key)
-      return [] unless @errors.key?(key)
+      return [] unless key?(key)
 
       @errors[key]
     end
@@ -22,7 +24,7 @@ module ActiveErrors
     alias_method :add, :[]=
 
     def added?(key, val)
-      return false unless @errors.key?(key)
+      return false unless key?(key)
 
       @errors[key].include?(val)
     end
@@ -62,7 +64,7 @@ module ActiveErrors
     alias_method :to_a, :full_messages
 
     def full_messages_for(key)
-      return [] unless @errors.key?(key)
+      return [] unless key?(key)
 
       @errors[key].map { |val| full_message(key, val) }
     end

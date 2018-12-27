@@ -6,15 +6,23 @@ detectors:
     enabled: false
   ControlParameter:
     enabled: false
+  DuplicateMethodCall:
+    enabled: false
   FeatureEnvy:
     enabled: false
   IrresponsibleModule:
     enabled: false
   ManualDispatch:
     enabled: false
+  MissingSafeMethod:
+    enabled: false
   NestedIterators:
     max_allowed_nesting: 2
   NilCheck:
+    enabled: false
+  RepeatedConditional:
+    enabled: false
+  TooManyMethods:
     enabled: false
   TooManyStatements:
     max_statements: 10
