@@ -3,6 +3,8 @@
 [![Gem Version](https://badge.fury.io/rb/active_errors.svg)](http://badge.fury.io/rb/active_errors)
 [![Build Status](https://travis-ci.org/drexed/active_errors.svg?branch=master)](https://travis-ci.org/drexed/active_errors)
 
+**NOTE** ActiveErrors has been deprecated in favor of [Lite::Errors](https://github.com/drexed/lite-errors). Its a drop-in replacement, so please make the switch as soon as possible.
+
 ActiveErrors provides an API for generating and accessing in the identical format as ActiveModel::Errors but without the need for all those extra cruft.
 
 ## Installation
@@ -52,13 +54,3 @@ class Shipment
 
 end
 ```
-
-## Contributing
-
-Your contribution is welcome.
-
-1. Fork it
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Added some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
